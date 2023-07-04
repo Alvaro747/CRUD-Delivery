@@ -188,8 +188,8 @@ class MenuRoute {
 
   /**
    * @swagger
-   * /delivery/menuremove/:
-   *   patch:
+   * /delivery/menu/:
+   *   delete:
    *      summary: Delete an existing menu.
    *      description: Updates the data of an existing menu with status deleted.
    *      tags:

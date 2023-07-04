@@ -189,8 +189,8 @@ class OrderRoute {
 
   /**
    * @swagger
-   * /delivery/orderRemove/:
-   *   patch:
+   * /delivery/order/:
+   *   delete:
    *      summary: Delete an existing Order.
    *      description: Updates the data of an existing Order with status deleted.
    *      tags:
