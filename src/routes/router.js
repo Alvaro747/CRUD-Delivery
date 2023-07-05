@@ -31,35 +31,31 @@ const router = {
     { httpRoute: '/user/', route: '/routes/api/user/user.route', handler: 'create', method: 'POST', protected: false },
     { httpRoute: '/user/', route: '/routes/api/user/user.route', handler: 'update', method: 'PATCH', protected: false }
   ],
-  delivery:[
-    
-    //MENU
+  catalog: [
+    // Menu
     { httpRoute: '/menu/:queryselector', route: '/routes/api/menu/menu.route', handler: 'get', method: 'GET', protected: false },
     { httpRoute: '/menu/', route: '/routes/api/menu/menu.route', handler: 'create', method: 'POST', protected: false },
     { httpRoute: '/menu/', route: '/routes/api/menu/menu.route', handler: 'update', method: 'PATCH', protected: false },
     { httpRoute: '/menu/', route: '/routes/api/menu/menu.route', handler: 'delete', method: 'DELETE', protected: false },
-
-    //Item Menu
-
-    { httpRoute: '/item/:queryselector', route: '/routes/api/itemMenu/item-menu.route', handler: 'get', method: 'GET', protected: false },
-    { httpRoute: '/item/', route: '/routes/api/itemMenu/item-menu.route', handler: 'create', method: 'POST', protected: false },
-    { httpRoute: '/item/', route: '/routes/api/itemMenu/item-menu.route', handler: 'update', method: 'PATCH', protected: false },
-    { httpRoute: '/item/', route: '/routes/api/itemMenu/item-menu.route', handler: 'delete', method: 'DELETE', protected: false },
-
+    // Item menu
+    { httpRoute: '/item/:queryselector', route: '/routes/api/menu/item-menu.route', handler: 'get', method: 'GET', protected: false },
+    { httpRoute: '/item/', route: '/routes/api/menu/item-menu.route', handler: 'create', method: 'POST', protected: false },
+    { httpRoute: '/item/', route: '/routes/api/menu/item-menu.route', handler: 'update', method: 'PATCH', protected: false },
+    { httpRoute: '/item/', route: '/routes/api/menu/item-menu.route', handler: 'delete', method: 'DELETE', protected: false }
+  ],
+  delivery: [
     // Order
-
     { httpRoute: '/order/:queryselector', route: '/routes/api/order/order.route', handler: 'get', method: 'GET', protected: false },
     { httpRoute: '/order/', route: '/routes/api/order/order.route', handler: 'create', method: 'POST', protected: false },
     { httpRoute: '/order/', route: '/routes/api/order/order.route', handler: 'update', method: 'PATCH', protected: false },
-    { httpRoute: '/order/', route: '/routes/api/order/order.route', handler: 'delete', method: 'DELETE', protected: false },
+    { httpRoute: '/order/', route: '/routes/api/order/order.route', handler: 'delete', method: 'DELETE', protected: false }
   ],
-  example:[
+  example: [
     // Template
     { httpRoute: '/template/:queryselector', route: '/routes/api/_template/_template.route', handler: 'get', method: 'GET', protected: false },
     { httpRoute: '/template/', route: '/routes/api/_template/_template.route', handler: 'create', method: 'POST', protected: false },
     { httpRoute: '/template/', route: '/routes/api/_template/_template.route', handler: 'update', method: 'PATCH', protected: false }
   ]
 }
-
 
 module.exports = router

@@ -107,7 +107,6 @@ class ApiManager {
       res.setHeader('Content-Type', 'application/json')
       res.send(specs)
     })
-   
   }
 
   #buildRoutes () {

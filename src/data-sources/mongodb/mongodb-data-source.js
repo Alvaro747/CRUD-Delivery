@@ -41,7 +41,6 @@ class MongoDBDataSource extends DataSource {
       if (!this._utilities.validator.response(superResponse)) {
         return superResponse
       }
-
       const collection = this._db.client.db(this._databaseSettings.dbName).collection(tableName)
       const documentResponse = collection.insertOne(entity)
 
@@ -106,11 +105,11 @@ class MongoDBDataSource extends DataSource {
       const transformedFilters = {}
 
       if (filters && filters.length > 1) {
-        transformedFilters['$and'] = []
+        transformedFilters.$and = []
 
         for (const filter of filters) {
           if (filter.key) {
-            transformedFilters['$and'].push({
+            transformedFilters.$and.push({
               [filter.key]: filter.value
             })
           }

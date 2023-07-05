@@ -1,4 +1,4 @@
-class OrderService {
+class ItemMenuService {
   constructor (dependencies) {
     /* Base Properties */
     this._dependencies = dependencies
@@ -10,7 +10,7 @@ class OrderService {
 
     /* Custom Properties */
     /* this._myPrivateProperty = 'Some value' */
-    this._tableName = 'orders'
+    this._tableName = 'menu_items'
 
     /* Assigments */
     /* this._newPrivateObject = new SomeObject(this._dependencies) */
@@ -18,13 +18,12 @@ class OrderService {
 
   async create (data) {
     try {
-      if (!data || !data.address) {
-        return this._utilities.io.response.error('Please provide an address')
+      if (!data || !data.name) {
+        return this._utilities.io.response.error('Please provide a name')
       }
+      data.id = this._utilities.generator.id({ length: 15, prefix: 'it_menu-' })
 
-      data.id = this._utilities.generator.id({ length: 15, prefix: 'order-' })
-
-      const entity = new this._models.OrderManagementModel(data, this._dependencies)
+      const entity = new this._models.ItemMenuModel(data, this._dependencies)
       const transactionResponse = await this._db.transaction.create({
         tableName: this._tableName,
         entity: entity.get
@@ -66,7 +65,7 @@ class OrderService {
   }
 
   async delete (data) {
-    data.status = this.status.deleted // assign the deleted property to the Order
+    data.status = this.status.deleted // assign the deleted property to the item menu
     try {
       if (!data || !data.id) {
         return this._utilities.io.response.error('Please provide an id')
@@ -92,7 +91,9 @@ class OrderService {
   async get (data) {
     try {
       if (!data || !data.queryselector) {
-        return this._utilities.io.response.error('Please provide a queryselector')
+        return this._utilities.io.response.error(
+          'Please provide a queryselector'
+        )
       }
 
       let response = {}
@@ -114,7 +115,9 @@ class OrderService {
           }
           break
         default:
-          response = this._utilities.io.response.error('Provide a valid slug to query')
+          response = this._utilities.io.response.error(
+            'Provide a valid slug to query'
+          )
           break
       }
 
@@ -128,13 +131,12 @@ class OrderService {
   async #getById (data) {
     try {
       if (!data || !data.search) {
-        return this._utilities.io.response.error('Please provide query to search')
+        return this._utilities.io.response.error(
+          'Please provide query to search'
+        )
       }
-
       return this.#getByFilters({
-        filters: [
-          { key: 'id', operator: '==', value: data.search }
-        ]
+        filters: [{ key: 'id', operator: '==', value: data.search }]
       })
     } catch (error) {
       this._console.error(error)
@@ -156,14 +158,14 @@ class OrderService {
   async #getByFilters (data) {
     try {
       if (!data || !data.filters) {
-        return this._utilities.io.response.error('Please provide at least one filter')
+        return this._utilities.io.response.error(
+          'Please provide at least one filter'
+        )
       }
-
       const transactionResponse = await this._db.transaction.getByFilters({
         tableName: this._tableName,
         filters: data.filters
       })
-
       return this._utilities.io.response.success(transactionResponse)
     } catch (error) {
       this._console.error(error)
@@ -172,8 +174,8 @@ class OrderService {
   }
 
   get status () {
-    return this._models.OrderManagementModel.statuses
+    return this._models.ItemMenuModel.statuses
   }
 }
 
-module.exports = OrderService
+module.exports = ItemMenuService

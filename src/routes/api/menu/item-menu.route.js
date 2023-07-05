@@ -1,22 +1,22 @@
 class ItemMenuRoute {
-  constructor(dependencies) {
+  constructor (dependencies) {
     /* Base Properties */
-    this._dependencies = dependencies;
-    this._utilities = this._dependencies.utilities;
-    this._console = this._dependencies.console;
-    this._services = this._dependencies.services;
+    this._dependencies = dependencies
+    this._utilities = this._dependencies.utilities
+    this._console = this._dependencies.console
+    this._services = this._dependencies.services
 
     /* Custom Properties */
     /* this._myPrivateProperty = 'Some value' */
 
     /* Assigments */
     /* this._newPrivateObject = new SomeObject(this._dependencies) */
-    this.EntityService = this._services.ItemMenuService;
+    this.EntityService = this._services.ItemMenuService
   }
 
   /**
    * @swagger
-   * /delivery/item/{queryselector}:
+   * /catalog/item/{queryselector}:
    *   get:
    *     summary: Get an Item Menu by query selector.
    *     description: Returns the Item menu information that matches the query selector an search specified in the route.
@@ -30,10 +30,11 @@ class ItemMenuRoute {
    *         schema:
    *           enum:
    *              - id
+   *              - all
    *       - in: query
    *         name: search
    *         description: Keyword to search for entities.
-   *         required: true
+   *         required: false
    *         schema:
    *           type: string
    *     responses:
@@ -65,20 +66,19 @@ class ItemMenuRoute {
    *                   message: Something was wrong while you make this action
    *                   result: null
    */
-  async get({ params }) {
+  async get ({ params }) {
     try {
-      const entityService = new this.EntityService(this._dependencies);
-
-      return entityService.get(params);
+      const entityService = new this.EntityService(this._dependencies)
+      return entityService.get(params)
     } catch (error) {
-      this._console.error(error);
-      return this._utilities.io.response.error();
+      this._console.error(error)
+      return this._utilities.io.response.error()
     }
   }
 
- /**
+  /**
    * @swagger
-   * /delivery/item/:
+   * /catalog/item/:
    *   post:
    *      summary: Create a new Item menu.
    *      description: Returns the created  Item menu with data provided.
@@ -120,20 +120,19 @@ class ItemMenuRoute {
    *                   message: Something was wrong while you make this action
    *                   result: null
    */
-  async create({ params }) {
+  async create ({ params }) {
     try {
-      const entityService = new this.EntityService(this._dependencies);
-
-      return entityService.create(params);
+      const entityService = new this.EntityService(this._dependencies)
+      return entityService.create(params)
     } catch (error) {
-      this._console.error(error);
-      return this._utilities.io.response.error();
+      this._console.error(error)
+      return this._utilities.io.response.error()
     }
   }
 
-   /**
+  /**
    * @swagger
-   * /delivery/item/:
+   * /catalog/item/:
    *   patch:
    *      summary: Update an existing Item menu.
    *      description: Updates the data of an existing Item menu with the data provided.
@@ -175,20 +174,19 @@ class ItemMenuRoute {
    *                   message: Something was wrong while you make this action
    *                   result: null
    */
-  async update({ params }) {
+  async update ({ params }) {
     try {
-      const entityService = new this.EntityService(this._dependencies);
-
-      return entityService.update(params);
+      const entityService = new this.EntityService(this._dependencies)
+      return entityService.update(params)
     } catch (error) {
-      this._console.error(error);
-      return this._utilities.io.response.error();
+      this._console.error(error)
+      return this._utilities.io.response.error()
     }
   }
 
   /**
    * @swagger
-   * /delivery/item/:
+   * /catalog/item/:
    *   delete:
    *      summary: Delete an existing Item menu.
    *      description: Updates the data of an existing Item menu with status deleted.
@@ -230,15 +228,15 @@ class ItemMenuRoute {
    *                   message: Something was wrong while you make this action
    *                   result: null
    */
-  async delete({ params }) {
+  async delete ({ params }) {
     try {
-      const entityService = new this.EntityService(this._dependencies);
-      return entityService.delete(params);
+      const entityService = new this.EntityService(this._dependencies)
+      return entityService.delete(params)
     } catch (error) {
-      this._console.error(error);
-      return this._utilities.io.response.error();
+      this._console.error(error)
+      return this._utilities.io.response.error()
     }
   }
 }
 
-module.exports = ItemMenuRoute;
+module.exports = ItemMenuRoute
